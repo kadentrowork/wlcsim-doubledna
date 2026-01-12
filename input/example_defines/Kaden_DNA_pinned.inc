@@ -176,7 +176,7 @@
 ! DEFAULTS COMMENT: ! not bruno, brad, or quinn, so will error unless specified elsewehre
 ! TYPE: CHARACTER(MAXPARAMLEN)
 
-#define WLC_P__INCLUDE_NUC_TRANS .TRUE.
+#define WLC_P__INCLUDE_NUC_TRANS .FALSE.
 ! VARIABLE COMMENT: ! Whether to include the translation across the nucleosome
 ! DEFAULTS COMMENT: ! Not used with constant elasticity
 ! TYPE: LOGICAL
