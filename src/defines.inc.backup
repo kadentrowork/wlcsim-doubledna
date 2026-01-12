@@ -126,9 +126,9 @@
 ! DEFAULTS COMMENT: ! We care about collisions
 ! TYPE: LOGICAL
 
-#define WLC_P__GJK_STERICS .FALSE.
+#define WLC_P__GJK_STERICS .TRUE.
 ! VARIABLE COMMENT: ! GJK algorithm to model DNA + nucleosomes as convex hulls
-! DEFAULTS COMMENT: ! Disable GJK for constant elasticity (use simple collision checks)
+! DEFAULTS COMMENT: ! Enable to prevent strands from crossing
 ! TYPE: LOGICAL
 
 #define WLC_P__GJK_POLYGON 16
@@ -151,14 +151,14 @@
 ! DEFAULTS COMMENT: !
 ! TYPE: CHARACTER(MAXPARAMLEN)
 
-#define WLC_P__APPLY_2body_potential .TRUE.
+#define WLC_P__APPLY_2body_potential .FALSE.
 ! VARIABLE COMMENT: ! Pairwise interaction potential
 ! DEFAULTS COMMENT: !
 ! TYPE: LOGICAL
 
-#define WLC_P__EXPLICIT_BINDING .TRUE.
+#define WLC_P__EXPLICIT_BINDING .FALSE.
 ! VARIABLE COMMENT: ! Include specific interactions between specified beads
-! DEFAULTS COMMENT: ! Required for network pinning
+! DEFAULTS COMMENT: ! Not included by default
 ! TYPE: LOGICAL
 
 #define WLC_P__NETWORK .TRUE.
@@ -176,7 +176,7 @@
 ! DEFAULTS COMMENT: ! not bruno, brad, or quinn, so will error unless specified elsewehre
 ! TYPE: CHARACTER(MAXPARAMLEN)
 
-#define WLC_P__INCLUDE_NUC_TRANS .FALSE.
+#define WLC_P__INCLUDE_NUC_TRANS .TRUE.
 ! VARIABLE COMMENT: ! Whether to include the translation across the nucleosome
 ! DEFAULTS COMMENT: ! Not used with constant elasticity
 ! TYPE: LOGICAL
@@ -217,7 +217,7 @@
 ! DEFAULTS COMMENT: ! don't save orientation vectors (saves disk space)
 ! TYPE: LOGICAL
 
-#define WLC_P__SAVEU .FALSE.
+#define WLC_P__SAVEU .True.
 ! VARIABLE COMMENT: ! save U vectors to file
 ! DEFAULTS COMMENT: ! don't save orientation vectors (makes restart of ssWLC possible)
 ! TYPE: LOGICAL

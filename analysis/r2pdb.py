@@ -70,7 +70,6 @@ def mkpdb(r, connect = None,Atom = None, serial = None,b = None, occup = None, c
     for i,c in enumerate(connect):
         line = 'CONECT'.rjust(6)
         line += ('%s' %c[0]).rjust(5)
-        line += ('%s' %c[0]).rjust(5) 
         line += ('%s' %c[1]).rjust(5)
         lines.append(line)
     lines.append('END')
