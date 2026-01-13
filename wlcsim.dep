@@ -1,15 +1,15 @@
 # This file is generated automatically. DO NOT EDIT!
 
 src/wlcsim/params.o : src/defines.inc src/third_party/mersenne_twister.o src/wlcsim/params.f03 \
-	src/util/binning.o \
+	src/wlcsim/energies.o \
+	src/util/sterics.o \
 	src/mc/mc_precalc_spider.o \
 	src/util/inputparams.o \
-	src/util/sterics.o \
+	src/mc/polydispersity.o \
 	src/mc/nucleosome.o \
-	src/wlcsim/precision.o \
 	src/mc/mc_wlc.o \
-	src/wlcsim/energies.o \
-	src/mc/polydispersity.o
+	src/util/binning.o \
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/wlcsim/params.f03 -o src/wlcsim/params.o
 src/wlcsim/restart_mpi.o : src/defines.inc src/third_party/mersenne_twister.o src/wlcsim/restart_mpi.f90 \
 	src/wlcsim/params.o \
@@ -36,9 +36,9 @@ src/wlcsim/precision.o : src/defines.inc src/third_party/mersenne_twister.o src/
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/wlcsim/precision.f03 -o src/wlcsim/precision.o
 src/wlcsim/initcond.o : src/defines.inc src/third_party/mersenne_twister.o src/wlcsim/initcond.f03 \
 	src/wlcsim/params.o \
-	src/util/vector_utils.o \
+	src/mc/polydispersity.o \
 	src/mc/nucleosome.o \
-	src/mc/polydispersity.o
+	src/util/vector_utils.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/wlcsim/initcond.f03 -o src/wlcsim/initcond.o
 src/wlcsim/wlcsim_bruno_looping_events.o : src/defines.inc src/third_party/mersenne_twister.o src/wlcsim/wlcsim_bruno_looping_events.f03 \
 	src/wlcsim/params.o
@@ -69,8 +69,8 @@ src/util/colsort.o : src/defines.inc src/third_party/mersenne_twister.o src/util
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/util/colsort.f03 -o src/util/colsort.o
 src/util/writhe.o : src/defines.inc src/third_party/mersenne_twister.o src/util/writhe.f03 \
 	src/wlcsim/params.o \
-	src/wlcsim/precision.o \
-	src/util/vector_utils.o
+	src/util/vector_utils.o \
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/util/writhe.f03 -o src/util/writhe.o
 src/util/colchecker.o : src/defines.inc src/third_party/mersenne_twister.o src/util/colchecker.f03 \
 	src/wlcsim/params.o \
@@ -80,8 +80,8 @@ src/util/getdim.o : src/defines.inc src/third_party/mersenne_twister.o src/util/
 	src/wlcsim/params.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/util/getdim.f03 -o src/util/getdim.o
 src/util/sterics.o : src/defines.inc src/third_party/mersenne_twister.o src/util/sterics.f90 \
-	src/wlcsim/precision.o \
-	src/util/vector_utils.o
+	src/util/vector_utils.o \
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/util/sterics.f90 -o src/util/sterics.o
 src/util/debugging.o : src/defines.inc src/third_party/mersenne_twister.o src/util/debugging.f90 \
 	src/wlcsim/params.o
@@ -137,9 +137,9 @@ src/mc/mc_full_chain_slide.o : src/defines.inc src/third_party/mersenne_twister.
 	src/mc/polydispersity.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_full_chain_slide.f03 -o src/mc/mc_full_chain_slide.o
 src/mc/umbrella.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/umbrella.f03 \
-	src/wlcsim/precision.o \
+	src/wlcsim/params.o \
 	src/wlcsim/energies.o \
-	src/wlcsim/params.o
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/umbrella.f03 -o src/mc/umbrella.o
 src/mc/mc_global_twist.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_global_twist.f03 \
 	src/wlcsim/params.o \
@@ -147,20 +147,20 @@ src/mc/mc_global_twist.o : src/defines.inc src/third_party/mersenne_twister.o sr
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_global_twist.f03 -o src/mc/mc_global_twist.o
 src/mc/mc_reptation_move.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_reptation_move.f03 \
 	src/wlcsim/params.o \
-	src/mc/polydispersity.o \
-	src/util/vector_utils.o
+	src/util/vector_utils.o \
+	src/mc/polydispersity.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_reptation_move.f03 -o src/mc/mc_reptation_move.o
 src/mc/nucleosome.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/nucleosome.f03 \
-	src/util/vector_utils.o \
-	src/util/sterics.o \
-	src/wlcsim/precision.o \
-	src/mc/mc_wlc.o \
 	src/wlcsim/energies.o \
-	src/mc/polydispersity.o
+	src/util/sterics.o \
+	src/mc/polydispersity.o \
+	src/mc/mc_wlc.o \
+	src/util/vector_utils.o \
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/nucleosome.f03 -o src/mc/nucleosome.o
 src/mc/mc_wlc.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_wlc.f03 \
-	src/wlcsim/precision.o \
-	src/util/vector_utils.o
+	src/util/vector_utils.o \
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_wlc.f03 -o src/mc/mc_wlc.o
 src/mc/mc_bind.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_bind.f03 \
 	src/wlcsim/params.o \
@@ -178,9 +178,9 @@ src/mc/mc_move.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_move.f90 -o src/mc/mc_move.o
 src/mc/mc_slide.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_slide.f03 \
 	src/wlcsim/params.o \
-	src/mc/ring_helper.o \
 	src/mc/window_tools.o \
-	src/mc/polydispersity.o
+	src/mc/polydispersity.o \
+	src/mc/ring_helper.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_slide.f03 -o src/mc/mc_slide.o
 src/mc/energy_self_chain.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/energy_self_chain.f03 \
 	src/wlcsim/params.o
@@ -189,28 +189,28 @@ src/mc/check_rp_for_nan.o : src/defines.inc src/third_party/mersenne_twister.o s
 	src/wlcsim/params.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/check_rp_for_nan.f03 -o src/mc/check_rp_for_nan.o
 src/mc/mc_linking_number.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_linking_number.f03 \
-	src/wlcsim/precision.o \
-	src/util/vector_utils.o \
 	src/wlcsim/params.o \
-	src/mc/ring_helper.o
+	src/mc/ring_helper.o \
+	src/util/vector_utils.o \
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_linking_number.f03 -o src/mc/mc_linking_number.o
 src/mc/mc_2bead_potential.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_2bead_potential.f03 \
 	src/wlcsim/params.o \
+	src/util/binning.o \
 	src/wlcsim/energies.o \
-	src/mc/polydispersity.o \
-	src/util/binning.o
+	src/mc/polydispersity.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_2bead_potential.f03 -o src/mc/mc_2bead_potential.o
 src/mc/update_r.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/update_r.f03 \
 	src/wlcsim/params.o \
-	src/util/sterics.o \
 	src/mc/polydispersity.o \
+	src/util/sterics.o \
 	src/util/binning.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/update_r.f03 -o src/mc/update_r.o
 src/mc/energy_elas.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/energy_elas.f03 \
 	src/wlcsim/params.o \
+	src/mc/nucleosome.o \
 	src/mc/mc_wlc.o \
-	src/mc/polydispersity.o \
-	src/mc/nucleosome.o
+	src/mc/polydispersity.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/energy_elas.f03 -o src/mc/energy_elas.o
 src/mc/mc_calc_volume.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_calc_volume.f03 \
 	src/wlcsim/params.o
@@ -230,15 +230,15 @@ src/mc/mc_int_rep.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_int_rep.f03 -o src/mc/mc_int_rep.o
 src/mc/mc_rotate.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_rotate.f03 \
 	src/wlcsim/params.o \
-	src/mc/polydispersity.o \
-	src/util/vector_utils.o
+	src/util/vector_utils.o \
+	src/mc/polydispersity.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_rotate.f03 -o src/mc/mc_rotate.o
 src/mc/mc_elas.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_elas.f03 \
 	src/wlcsim/params.o \
-	src/mc/nucleosome.o \
-	src/mc/mc_wlc.o \
 	src/wlcsim/energies.o \
-	src/mc/polydispersity.o
+	src/mc/polydispersity.o \
+	src/mc/nucleosome.o \
+	src/mc/mc_wlc.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_elas.f03 -o src/mc/mc_elas.o
 src/mc/ring_helper.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/ring_helper.f03 \
 	src/wlcsim/params.o \
@@ -252,19 +252,19 @@ src/mc/mc_int_chem.o : src/defines.inc src/third_party/mersenne_twister.o src/mc
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_int_chem.f03 -o src/mc/mc_int_chem.o
 src/mc/mc_internucleosome.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_internucleosome.f03 \
 	src/wlcsim/params.o \
-	src/util/binning.o \
-	src/util/sterics.o \
-	src/mc/nucleosome.o \
 	src/wlcsim/energies.o \
-	src/mc/polydispersity.o
+	src/util/sterics.o \
+	src/mc/polydispersity.o \
+	src/mc/nucleosome.o \
+	src/util/binning.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_internucleosome.f03 -o src/mc/mc_internucleosome.o
 src/mc/mc_sterics.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_sterics.f03 \
 	src/wlcsim/params.o \
-	src/util/binning.o \
-	src/util/vector_utils.o \
 	src/util/sterics.o \
+	src/mc/polydispersity.o \
 	src/mc/nucleosome.o \
-	src/mc/polydispersity.o
+	src/util/binning.o \
+	src/util/vector_utils.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_sterics.f03 -o src/mc/mc_sterics.o
 src/mc/mc_chain_swap.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_chain_swap.f03 \
 	src/wlcsim/params.o \
@@ -277,20 +277,20 @@ src/mc/mc_chem_move.o : src/defines.inc src/third_party/mersenne_twister.o src/m
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_chem_move.f03 -o src/mc/mc_chem_move.o
 src/mc/mc_pivot.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_pivot.f03 \
 	src/wlcsim/params.o \
-	src/util/vector_utils.o \
 	src/mc/window_tools.o \
-	src/mc/polydispersity.o
+	src/mc/polydispersity.o \
+	src/util/vector_utils.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_pivot.f03 -o src/mc/mc_pivot.o
 src/mc/mc_save_energy_data.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_save_energy_data.f03 \
-	src/wlcsim/params.o \
-	src/wlcsim/energies.o
+	src/wlcsim/energies.o \
+	src/wlcsim/params.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_save_energy_data.f03 -o src/mc/mc_save_energy_data.o
 src/mc/mc_spider.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_spider.f03 \
 	src/wlcsim/params.o \
-	src/util/vector_utils.o \
-	src/wlcsim/precision.o \
 	src/mc/window_tools.o \
-	src/mc/polydispersity.o
+	src/mc/polydispersity.o \
+	src/util/vector_utils.o \
+	src/wlcsim/precision.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_spider.f03 -o src/mc/mc_spider.o
 src/mc/mc_cylinder.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_cylinder.f03 \
 	src/wlcsim/params.o \
@@ -317,20 +317,20 @@ src/mc/writhe_slide.o : src/defines.inc src/third_party/mersenne_twister.o src/m
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/writhe_slide.f03 -o src/mc/writhe_slide.o
 src/mc/mcsim.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mcsim.f03 \
 	src/wlcsim/params.o \
-	src/mc/update_r.o \
-	src/util/binning.o \
-	src/mc/mc_linking_number.o \
 	src/wlcsim/energies.o \
 	src/mc/umbrella.o \
-	src/mc/polydispersity.o
+	src/mc/polydispersity.o \
+	src/util/binning.o \
+	src/mc/mc_linking_number.o \
+	src/mc/update_r.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mcsim.f03 -o src/mc/mcsim.o
 src/mc/verify_energies_from_scratch.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/verify_energies_from_scratch.f03 \
 	src/wlcsim/params.o \
-	src/mc/mc_linking_number.o \
-	src/util/binning.o \
-	src/mc/nucleosome.o \
+	src/mc/umbrella.o \
 	src/wlcsim/energies.o \
-	src/mc/umbrella.o
+	src/mc/nucleosome.o \
+	src/util/binning.o \
+	src/mc/mc_linking_number.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/verify_energies_from_scratch.f03 -o src/mc/verify_energies_from_scratch.o
 src/mc/mc_hamiltonian.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_hamiltonian.f03 \
 	src/wlcsim/params.o \
@@ -354,15 +354,15 @@ src/mc/mc_writhe.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/m
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_writhe.f03 -o src/mc/mc_writhe.o
 src/mc/mc_crank.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_crank.f03 \
 	src/wlcsim/params.o \
-	src/mc/ring_helper.o \
-	src/util/vector_utils.o \
 	src/mc/window_tools.o \
-	src/mc/polydispersity.o
+	src/mc/polydispersity.o \
+	src/mc/ring_helper.o \
+	src/util/vector_utils.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_crank.f03 -o src/mc/mc_crank.o
 src/mc/mc_full_chain_rotation.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_full_chain_rotation.f03 \
 	src/wlcsim/params.o \
-	src/mc/polydispersity.o \
-	src/util/vector_utils.o
+	src/util/vector_utils.o \
+	src/mc/polydispersity.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_full_chain_rotation.f03 -o src/mc/mc_full_chain_rotation.o
 src/mc/mc_capsid_ex.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_capsid_ex.f03 \
 	src/wlcsim/params.o
@@ -379,8 +379,8 @@ src/mc/mc_explicit_binding.o : src/defines.inc src/third_party/mersenne_twister.
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_explicit_binding.f03 -o src/mc/mc_explicit_binding.o
 src/mc/mc_reptation_multi.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_reptation_multi.f03 \
 	src/wlcsim/params.o \
-	src/mc/polydispersity.o \
-	src/util/vector_utils.o
+	src/util/vector_utils.o \
+	src/mc/polydispersity.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_reptation_multi.f03 -o src/mc/mc_reptation_multi.o
 src/mc/adapt.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/adapt.f90 \
 	src/wlcsim/params.o
@@ -389,9 +389,9 @@ src/mc/polydispersity.o : src/defines.inc src/third_party/mersenne_twister.o src
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/polydispersity.f03 -o src/mc/polydispersity.o
 src/mc/mc_nucleosome_slide.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/mc_nucleosome_slide.f03 \
 	src/wlcsim/params.o \
-	src/mc/nucleosome.o \
 	src/mc/window_tools.o \
-	src/mc/polydispersity.o
+	src/mc/polydispersity.o \
+	src/mc/nucleosome.o
 	mpifort -c -ggdb -Jsrc -Isrc -Isrc/third_party/FLAP/exe/mod -Isrc/third_party -cpp -fcheck=all -Wall -pedantic -fall-intrinsics -Wno-surprising -Waliasing -Wconversion-extra -Wcompare-reals -Warray-temporaries -Warray-bounds -Wattributes -Wextra  -DMPI_VERSION src/mc/mc_nucleosome_slide.f03 -o src/mc/mc_nucleosome_slide.o
 src/mc/de_self_crank.o : src/defines.inc src/third_party/mersenne_twister.o src/mc/de_self_crank.f03 \
 	src/wlcsim/params.o

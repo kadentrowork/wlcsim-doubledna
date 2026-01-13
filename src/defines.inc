@@ -161,7 +161,7 @@
 ! DEFAULTS COMMENT: ! Required for network pinning
 ! TYPE: LOGICAL
 
-#define WLC_P__NETWORK .TRUE.
+#define WLC_P__NETWORK .FALSE.
 ! VARIABLE COMMENT: ! Pin pairs of beads together (to enforce the network)
 ! DEFAULTS COMMENT: ! Enabled to pin strand ends together
 ! TYPE: LOGICAL
@@ -248,9 +248,9 @@
 !
 ! ---------------------------
 
-#define WLC_P__NB 100
+#define WLC_P__NB 200
 ! VARIABLE COMMENT: ! Number of beads in a polymer NB = nMpP*nBpM
-! DEFAULTS COMMENT: ! 100 beads per strand
+! DEFAULTS COMMENT: ! 200 beads per strand (5 nt per bead instead of 10)
 ! TYPE: INTEGER
 
 #define WLC_P__NMPP WLC_P__NB/WLC_P__NBPM
@@ -557,7 +557,7 @@
 ! DEFAULTS COMMENT: ! zero for simplitity
 ! TYPE: REAL(DP)
 
-#define WLC_P__EXPLICIT_BIND_ENERGY 0.0_DP
+#define WLC_P__EXPLICIT_BIND_ENERGY 100.0_DP
 ! VARIABLE COMMENT: ! Include specific interactions between specified beads
 ! DEFAULTS COMMENT: ! Not included by default
 ! TYPE: REAL(DP)
@@ -615,7 +615,7 @@
 ! DEFAULTS COMMENT: ! make this large <e.g. 2000>, 10000 for big sim
 ! TYPE: INTEGER
 
-#define WLC_P__NUMSAVEPOINTS 110
+#define WLC_P__NUMSAVEPOINTS 11
 ! VARIABLE COMMENT: ! total number of save points
 ! DEFAULTS COMMENT: !
 ! TYPE: INTEGER
@@ -1380,7 +1380,7 @@
 ! DEFAULTS COMMENT: ! exponential fragment sizes mix better
 ! TYPE: INTEGER
 
-#define WLC_P__PROB_BIND_RESPECTING_MOVE 1.01_DP
+#define WLC_P__PROB_BIND_RESPECTING_MOVE 0.5_DP
 ! VARIABLE COMMENT: ! probability that we make sure move doesnt break loop
 ! DEFAULTS COMMENT: ! about half, only used if explicit binding turned on
 ! TYPE: REAL(DP)
