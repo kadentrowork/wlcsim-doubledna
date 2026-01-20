@@ -83,7 +83,7 @@
 
 #define WLC_P__COLLISIONDETECTIONTYPE 0
 ! VARIABLE COMMENT: ! save first passage time vectors to file
-! DEFAULTS COMMENT: ! don't track first passage time collisions between beads
+! DEFAULTS COMMENT: ! to see collision times
 ! TYPE: INTEGER
 
 #define WLC_P__RESTART .FALSE.
@@ -126,9 +126,9 @@
 ! DEFAULTS COMMENT: ! We care about collisions
 ! TYPE: LOGICAL
 
-#define WLC_P__GJK_STERICS .TRUE.
+#define WLC_P__GJK_STERICS .FALSE.
 ! VARIABLE COMMENT: ! GJK algorithm to model DNA + nucleosomes as convex hulls
-! DEFAULTS COMMENT: ! Enable to prevent strands from crossing
+! DEFAULTS COMMENT: ! Disable GJK for constant elasticity (use simple collision checks)
 ! TYPE: LOGICAL
 
 #define WLC_P__GJK_POLYGON 16
@@ -151,17 +151,17 @@
 ! DEFAULTS COMMENT: !
 ! TYPE: CHARACTER(MAXPARAMLEN)
 
-#define WLC_P__APPLY_2body_potential .FALSE.
+#define WLC_P__APPLY_2body_potential .TRUE.
 ! VARIABLE COMMENT: ! Pairwise interaction potential
 ! DEFAULTS COMMENT: !
 ! TYPE: LOGICAL
 
-#define WLC_P__EXPLICIT_BINDING .FALSE.
+#define WLC_P__EXPLICIT_BINDING .TRUE.
 ! VARIABLE COMMENT: ! Include specific interactions between specified beads
-! DEFAULTS COMMENT: ! Not included by default
+! DEFAULTS COMMENT: ! Required for network pinning
 ! TYPE: LOGICAL
 
-#define WLC_P__NETWORK .TRUE.
+#define WLC_P__NETWORK .FALSE.
 ! VARIABLE COMMENT: ! Pin pairs of beads together (to enforce the network)
 ! DEFAULTS COMMENT: ! Enabled to pin strand ends together
 ! TYPE: LOGICAL
@@ -217,7 +217,7 @@
 ! DEFAULTS COMMENT: ! don't save orientation vectors (saves disk space)
 ! TYPE: LOGICAL
 
-#define WLC_P__SAVEU .True.
+#define WLC_P__SAVEU .FALSE.
 ! VARIABLE COMMENT: ! save U vectors to file
 ! DEFAULTS COMMENT: ! don't save orientation vectors (makes restart of ssWLC possible)
 ! TYPE: LOGICAL
@@ -237,7 +237,7 @@
 ! DEFAULTS COMMENT: ! Use old output format
 ! TYPE: LOGICAL
 
-#define WLC_P__SAVE_LK .TRUE.
+#define WLC_P__SAVE_LK .FALSE.
 ! VARIABLE COMMENT: ! Save linking number. Only for ring polymer
 ! DEFAULTS COMMENT: ! Does not save linking at each save point 
 ! TYPE: LOGICAL
@@ -248,9 +248,9 @@
 !
 ! ---------------------------
 
-#define WLC_P__NB 100
+#define WLC_P__NB 200
 ! VARIABLE COMMENT: ! Number of beads in a polymer NB = nMpP*nBpM
-! DEFAULTS COMMENT: ! 100 beads per strand
+! DEFAULTS COMMENT: ! 200 beads per strand (5 nt per bead instead of 10)
 ! TYPE: INTEGER
 
 #define WLC_P__NMPP WLC_P__NB/WLC_P__NBPM
@@ -260,7 +260,7 @@
 
 #define WLC_P__NBPM 1
 ! VARIABLE COMMENT: ! number beads per monomer
-! DEFAULTS COMMENT: Each bead is a nucleosome
+! DEFAULTS COMMENT: not sure what this is
 ! TYPE: INTEGER
 
 #define WLC_P__NP 2
@@ -370,7 +370,7 @@
 ! DEFAULTS COMMENT: ! default to phased, i.e. set up a chain of constant linker length
 ! TYPE: REAL(DP)
 
-#define WLC_P__L 345.0_dp
+#define WLC_P__L (WLC_P__LENGTH_PER_BP*10*WLC_P__NB)
 ! VARIABLE COMMENT: ! length of each polymer in simulation
 ! DEFAULTS COMMENT: ! 100 beads * 3.45 nm/bead per strand
 ! TYPE: REAL(DP)
@@ -557,7 +557,7 @@
 ! DEFAULTS COMMENT: ! zero for simplitity
 ! TYPE: REAL(DP)
 
-#define WLC_P__EXPLICIT_BIND_ENERGY 0.0_DP
+#define WLC_P__EXPLICIT_BIND_ENERGY 100.0_DP
 ! VARIABLE COMMENT: ! Include specific interactions between specified beads
 ! DEFAULTS COMMENT: ! Not included by default
 ! TYPE: REAL(DP)
@@ -615,7 +615,7 @@
 ! DEFAULTS COMMENT: ! make this large <e.g. 2000>, 10000 for big sim
 ! TYPE: INTEGER
 
-#define WLC_P__NUMSAVEPOINTS 110
+#define WLC_P__NUMSAVEPOINTS 11
 ! VARIABLE COMMENT: ! total number of save points
 ! DEFAULTS COMMENT: !
 ! TYPE: INTEGER
@@ -1380,7 +1380,7 @@
 ! DEFAULTS COMMENT: ! exponential fragment sizes mix better
 ! TYPE: INTEGER
 
-#define WLC_P__PROB_BIND_RESPECTING_MOVE 1.01_DP
+#define WLC_P__PROB_BIND_RESPECTING_MOVE 0.5_DP
 ! VARIABLE COMMENT: ! probability that we make sure move doesnt break loop
 ! DEFAULTS COMMENT: ! about half, only used if explicit binding turned on
 ! TYPE: REAL(DP)

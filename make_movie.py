@@ -49,6 +49,10 @@ def create_movie(data_path='data/', pdb_path='analysis/pdb/',
         # Load position data
         r = np.loadtxt(r_file)
         
+        # Center the structure by subtracting mean position (removes diffusion)
+        mean_pos = np.mean(r, axis=0)
+        r = r - mean_pos
+        
         # Determine number of polymers (NP=2 in your case)
         # Each polymer has NB beads (100 in your case)
         n_total = len(r)

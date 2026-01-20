@@ -217,7 +217,7 @@
 ! DEFAULTS COMMENT: ! don't save orientation vectors (saves disk space)
 ! TYPE: LOGICAL
 
-#define WLC_P__SAVEU .FALSE.
+#define WLC_P__SAVEU .TRUE.
 ! VARIABLE COMMENT: ! save U vectors to file
 ! DEFAULTS COMMENT: ! don't save orientation vectors (makes restart of ssWLC possible)
 ! TYPE: LOGICAL
@@ -615,7 +615,7 @@
 ! DEFAULTS COMMENT: ! make this large <e.g. 2000>, 10000 for big sim
 ! TYPE: INTEGER
 
-#define WLC_P__NUMSAVEPOINTS 100
+#define WLC_P__NUMSAVEPOINTS 2
 ! VARIABLE COMMENT: ! total number of save points
 ! DEFAULTS COMMENT: !
 ! TYPE: INTEGER
