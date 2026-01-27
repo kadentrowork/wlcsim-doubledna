@@ -248,7 +248,7 @@
 !
 ! ---------------------------
 
-#define WLC_P__NB 300
+#define WLC_P__NB 1000
 ! VARIABLE COMMENT: ! Number of beads in a polymer NB = nMpP*nBpM
 ! DEFAULTS COMMENT: ! 200 beads per strand 
 ! TYPE: INTEGER
@@ -370,7 +370,7 @@
 ! DEFAULTS COMMENT: ! default to phased, i.e. set up a chain of constant linker length
 ! TYPE: REAL(DP)
 
-#define WLC_P__L (WLC_P__LENGTH_PER_BP*10*WLC_P__NB)
+#define WLC_P__L (WLC_P__LENGTH_PER_BP*20*WLC_P__NB)
 ! VARIABLE COMMENT: ! length of each polymer in simulation. Here calculated so that there is 10 nucleotides per bead
 ! DEFAULTS COMMENT: ! 100 beads * 3.45 nm/bead per strand
 ! TYPE: REAL(DP)
@@ -615,7 +615,7 @@
 ! DEFAULTS COMMENT: ! make this large <e.g. 2000>, 10000 for big sim
 ! TYPE: INTEGER
 
-#define WLC_P__NUMSAVEPOINTS 100
+#define WLC_P__NUMSAVEPOINTS 500
 ! VARIABLE COMMENT: ! total number of save points
 ! DEFAULTS COMMENT: !
 ! TYPE: INTEGER
